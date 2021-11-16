@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const passport = require('passport');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const connectDB = require('./config/db');
 
 
@@ -33,7 +34,8 @@ app.set('view engine', '.hbs');
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: "mongodb+srv://koheitech:koheitech@cluster0.us7lg.mongodb.net/storybooks?retryWrites=true&w=majority" })
 }));
 
 // Passport middleware
